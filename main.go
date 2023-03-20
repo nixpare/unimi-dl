@@ -6,7 +6,6 @@ import (
 	"io"
 	"net/http"
 	"os"
-	"path"
 	"strings"
 	"sync"
 )
@@ -17,15 +16,13 @@ type video struct {
 }
 
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
-
 	dir, _ := os.ReadDir(".")
 	var found bool
 
-	pathDir := path.Dir(strings.ReplaceAll(os.Args[0], "\\", "/"))
+	pathDir, _ := os.Getwd()
 
 	htmlFiles := make(map[string]string)
-	dirVideo := make(map[string]string)
+	dirVideos := make(map[string]string)
 
 	for _, x := range dir {
 		if strings.Contains(x.Name(), ".html") {
@@ -33,13 +30,13 @@ func main() {
 			htmlFiles[x.Name()] = pathDir + "/" + x.Name()
 			videoDir := strings.Split(pathDir + "/" + x.Name(), ".")[0]
 			os.MkdirAll(videoDir, 0777)
-			dirVideo[x.Name()] = videoDir
+			dirVideos[x.Name()] = videoDir
 		}
 	}
 
 	if !found {
 		fmt.Println("Nessun file html presente nella cartella, metterne uno e riavviare il programma\nPremere invio per chiudere la schermata ...")
-		scanner.Scan()
+		fmt.Scan()
 		return
 	}
 
@@ -47,7 +44,7 @@ func main() {
 	stringErr := new(string)
 
 	for x := range htmlFiles {
-		singleFile(x, dirVideo[x], vg, stringErr, scanner)
+		singleFile(x, dirVideos[x], vg, stringErr)
 	}
 
 	vg.Wait()
@@ -60,10 +57,10 @@ func main() {
 		fmt.Printf("\n%s\n", *stringErr)
 	}
 	
-	scanner.Scan()
+	fmt.Scan()
 }
 
-func singleFile(fileName, dirPath string, vg *sync.WaitGroup, stringErr *string, scanner *bufio.Scanner) {
+func singleFile(fileName, dirPath string, vg *sync.WaitGroup, stringErr *string) {
 	file, _ := os.Open(fileName)
 	fileScanner := bufio.NewScanner(file)
 	for fileScanner.Scan() {
@@ -114,10 +111,13 @@ func singleFile(fileName, dirPath string, vg *sync.WaitGroup, stringErr *string,
 		for _, s := range x.link {
 			fmt.Println("\tLink: ", s)
 		}
-		fmt.Print("\nVuoi Scaricarli? [si/no | s/n] -> ")
-		scanner.Scan()
+		fmt.Print("\nVuoi Scaricarli? [S (sì) / n (no)] -> ")
+
+		var resp string
+		fmt.Scanln(&resp)
 		fmt.Print("\n\n")
-		if strings.ToLower(scanner.Text()) == "si" || strings.ToLower(scanner.Text()) == "s" {
+
+		if resp == "" || strings.ToLower(resp) == "si" || strings.ToLower(resp) == "sì" || strings.ToLower(resp) == "s" {
 			if len(x.link) > 1 {
 				for i := range x.link {
 					vg.Add(1)
