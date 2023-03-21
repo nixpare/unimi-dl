@@ -3,8 +3,12 @@ module github.com/nixpare/unimi-dl
 go 1.20
 
 require (
-	golang.org/x/net v0.8.0
+	github.com/PuerkitoBio/goquery v1.8.1
 	golang.org/x/term v0.6.0
 )
 
-require golang.org/x/sys v0.6.0 // indirect
+require (
+	github.com/andybalholm/cascadia v1.3.1 // indirect
+	golang.org/x/net v0.8.0 // indirect
+	golang.org/x/sys v0.6.0 // indirect
+)
