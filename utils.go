@@ -18,6 +18,7 @@ func ExtractTextFromHTML(selection *goquery.Selection) string {
 		if s == "" {
 			continue
 		}
+		
 		result = append(result, strings.TrimSpace(s))
 	}
 

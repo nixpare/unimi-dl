@@ -13,7 +13,7 @@ func main() {
 		fmt.Scanf("%s\n", &b)
 	}()
 
-	pageFile, err := os.Open("page.html")
+	pageFile, err := os.Open("page2.html")
 	if err != nil {
 		panic(err)
 	}

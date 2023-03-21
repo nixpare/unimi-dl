@@ -69,7 +69,7 @@ func (l Lecture) String() string {
 	res := fmt.Sprintf(
 		"Lecture Title: %s\nMessage: %s\nVideos:",
 		l.Title,
-		l.Message,
+		IndentMultilineString(l.Message, 9),
 	)
 	if len(l.Videos) == 0 {
 		return res + " None"
