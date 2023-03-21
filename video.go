@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strings"
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
@@ -38,9 +37,13 @@ func NewVideo(s *goquery.Selection) Video {
 }
 
 func (v Video) String() string {
-	res := fmt.Sprintf("Manifest URL: %s\nInfo:\n", v.manifestURL)
-	for _, info := range v.infos {
-		res += fmt.Sprintf("  -  %s\n", info)
+	res := fmt.Sprintf("Manifest URL: %s\nInfo:", v.manifestURL)
+	if len(v.infos) == 0 {
+		return res + " None"
 	}
-	return strings.TrimSpace(res)
+
+	for _, info := range v.infos {
+		res += fmt.Sprintf("\n  -  %s", info)
+	}
+	return res
 }

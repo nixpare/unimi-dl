@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -21,4 +22,18 @@ func ExtractTextFromHTML(selection *goquery.Selection) string {
 	}
 
 	return strings.Join(result, " ")
+}
+
+func IndentMultilineString(a any, nSpaces int) string {
+	var spacePrefix string
+	for i := 0; i < nSpaces; i++ {
+		spacePrefix += " "
+	}
+
+	split := strings.Split(fmt.Sprint(a), "\n")
+	for i := 1; i < len(split); i++ {
+		split[i] = spacePrefix + split[i]
+	}
+
+	return strings.Join(split, "\n")
 }
