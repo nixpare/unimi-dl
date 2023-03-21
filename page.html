@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<title>
+		ARCHITETTURA DEGLI ELABORATORI II Edizione 2 - Ariel
+	</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<link rel="shortcut icon" type="image/png" href="../images/favicon.png">
+	</link>
+	<link href="../Styles/BBCode.css" rel="stylesheet" type="text/css" />
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+		type="text/css" />
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" type="text/css" />
+	<link href="../styles/ArielStyles.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.1.1/ekko-lightbox.min.css" rel="stylesheet"
+		type="text/css" />
+	<!--[if lte IE 7]><link href="../Styles/Frm3ie.css" rel="stylesheet" type="text/css" /><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js" type="text/javascript"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="//cdn.jsdelivr.net/npm/mux.js@5.6.3/dist/mux.min.js" type="text/javascript"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/shaka-player/3.0.5/shaka-player.compiled.debug.js"
+		type="text/javascript"></script>
+	<script src="../Javascript/frm3/Shaka.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.1.1/ekko-lightbox.min.js"
+		type="text/javascript"></script>
+	<script src="../javascript/lib/engine.js" type="text/javascript"></script>
+	<script src="../Javascript/Code.js" type="text/javascript"></script>
+	<!--[if lte IE 7]><script src="../javascript/lib/ie7/ie8.js" type="text/javascript"></script><![endif]--><!--[if lte IE 7]><script src="../javascript/lib/json.js" type="text/javascript"></script><![endif]-->
+	<script src="../javascript/frm3/loc-it-IT.js" type="text/javascript"></script>
+	<script src="../javascript/frm3/common.js" type="text/javascript"></script>
+	<script src="../javascript/frm3/ThreadList.js" type="text/javascript"></script>
+	<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+
+<body>
+	<form method="post"
+		action="./ThreadList.aspx?fc=qBg4sBrRnwcdhrbedslZntFd2HdJGwehSpagKzRGGL46du5ML7nAZ1F3iVRHQ0jk&amp;roomid=227362"
+		id="form1" class=" fac-F">
+		<div class="aspNetHidden">
+			<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+				value="/wEPDwUKLTg3MzMwNzE5MA9kFgICAw8WAh4FY2xhc3MFBiBmYWMtRhYEZg9kFgICAQ9kFgICAQ8PFgIeBFRleHQFLEFSQ0hJVEVUVFVSQSBERUdMSSBFTEFCT1JBVE9SSSBJSSBFZGl6aW9uZSAyZGQCAw9kFgJmDxYCHwEFuAIgICAgX2dhcS5wdXNoKFsnX3NldEN1c3RvbVZhcicsIDEsICdhdXRoZW50aWNhdGVkJywgJ3RydWUnXSk7CiAgICBfZ2FxLnB1c2goWydfc2V0Q3VzdG9tVmFyJywgMiwgJ3VuaW1pVHlwZScsICdTdHVkZW50J10pOwogICAgX2dhcS5wdXNoKFsnX3NldEN1c3RvbVZhcicsIDQsICdhY2FkZW1pY0NvdXJzZScsICdGMVgnXSk7CiAgICBfZ2FxLnB1c2goWydfc2V0Q3VzdG9tVmFyJywgMywgJ3Rva2VuVHlwZScsICdvc3BpdGUnXSk7CiAgICBfZ2FxLnB1c2goWydfc2V0Q3VzdG9tVmFyJywgNSwgJ3Byb2plY3RLZXknLCAnbmJhc2lsaWNvYWUyJ10pOwpkZLHyqirqF2sQpfMuICBISkFdmyaonaYLkkvH/TEYZ+Pv" />
+		</div>
+
+		<!--[if lt IE 9]>  
+<div class="container-fluid nosupport">
+    <strong>Attenzione!</strong> Questa versione del browser non è supportata.
+</div>
+<![endif]-->
+		<nav id="navbar" class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+						data-target="#navbar-collapse" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<em class="fa fa-bars"></em>
+					</button>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar"
+						aria-expanded="false">
+						<span class="sr-only">Toggle sidebar</span>
+						<em class="fa fa-user"></em>
+					</button>
+					<svg class="navbar-brand" id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 506.29 338.47">
+						<title>Senza titolo-1</title>
+						<path class="cls-1"
+							d="M275.1,99.34,429,437.82H382.33l-37.82-83.4H206.2l-37.4,83.4H122.49ZM275,201.07,222.84,317.32H327.68Z"
+							transform="translate(-28.86 -99.34)" />
+						<path class="cls-2"
+							d="M535.15,181.14,511.4,338.49l-39-41.69c-3.12,2.5-6.34,5-9.58,7.38C325.36,405,133.27,377.9,28.86,244.61c108.55,89.45,267.75,97.68,386.3,10.7,2.39-1.74,4.73-3.53,7-5.32l-42.62-35.61Z"
+							transform="translate(-28.86 -99.34)" />
+					</svg>
+					<div class="navbar-brand">
+						<span Class="subbrand">Scienze e tecnologie</span>
+						<br />
+						<a href="../home"><span id="ctl24_lblProjectTitle">ARCHITETTURA DEGLI ELABORATORI II Edizione
+								2</span></a>
+					</div>
+					<div class="navbar-brand subbrand pull-right">
+						<a href="http://www.unimi.it"><img src="../images/unimi-rev.png"
+								alt="Università degli Studi di Milano" /></a>
+
+					</div>
+
+				</div>
+
+				<div class="collapse navbar-collapse inverse" id="navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="../Home/">Home</a>
+						</li>
+						<li class="active">
+							<a href="../Home/ToolRedirector.aspx?toolName=contenuti">Contenuti</a>
+						</li>
+						<li>
+							<a href="../Stats/">Comunità</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="../Logout.aspx">
+								Logout
+							</a>
+						</li>
+					</ul>
+				</div>
+
+			</div><!-- /.container-fluid -->
+		</nav>
+
+		<div class="hide" style="display:none"><img
+				src="https://elearning.unimi.it/authentication/keepalive.aspx?userid=598556&app=ariel2&prj=nbasilicoae2"
+				alt="keepalive"></div>
+		<div id="main-contents" class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-3 col-md-push-9 col-lg-2 col-lg-push-10 collapse" id="sidebar">
+					<div id="sideBarContent">
+						<h4><em class="fa fa-fw fa-link" aria-hidden="true"></em><a href="http://ariel.unimi.it">Portale
+								Ariel</a></h4>
+						<hr />
+						<h4><em class="fa fa-user fa-fw" aria-hidden="true"></em><span>alessio pareto</span></h4>
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<p><small>Tipologia utente</small><br />Studente Unimi</p>
+								<p><small>Ruolo nel sito</small><br />Ospite</p>
+								<p><a href="../home/profileEdit.aspx"><span class="fa fa-fw fa-edit"></span> Gestione
+										profilo</a></p>
+							</div>
+						</div>
+						<h4><em class="fa fa-book fa-fw" aria-hidden="true"></em><span>Guide Ariel</span></h4>
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<p>Sul portale sono disponibili le <a href="https://ariel.unimi.it/documenti/guide"
+										target="_blank"><strong>guide all’uso della piattaforma Ariel</strong></a></p>
+							</div>
+						</div>
+						<hr />
+						<h4 class="text-danger"><em class="fa fa-exclamation-triangle fa-fw"
+								aria-hidden="true"></em><span>Avviso</span></h4>
+						<div class="panel panel-danger">
+							<div class="panel-body">
+								<p>
+								<div class="arielAlertMessage"
+									style="background-color:rgba(128,255,0,0.1); padding-left:7px; padding-right:7px; padding-top:5px; margin-top:-10px; padding-bottom:5px;border-bottom:1px solid #31708f;">
+									<!--p><strong>Avviso</strong></p-->
+									<p>
+										Si ricorda che, come previsto dall’art. 2 delle “Condizioni di utilizzo e norme
+										sulla privacy di Ariel”, espressamente accettate in occasione del primo accesso
+										al Portale Ariel, il materiale didattico reso disponibile online deve essere
+										utilizzato dagli Utenti esclusivamente per il proprio studio personale, senza
+										ledere i diritti di proprietà intellettuale dei relativi autori. Nessuna
+										riproduzione, diffusione o distribuzione, totale o parziale, di tale materiale è
+										consentita senza preventiva autorizzazione scritta dell’Università degli Studi
+										di Milano. Eventuali violazioni saranno segnalate alle Autorità competenti e i
+										trasgressori appartenenti alla Comunità universitaria passibili di sanzioni
+										disciplinari.
+									</p>
+								</div>
+
+								</p>
+							</div>
+						</div>
+						<hr />
+						<div id="userProjectList">
+							<h4><em class="fa fa-fw fa-thumb-tack"></em><span>Siti preferiti</span></h4>
+							<div class="panel panel-default">
+								<ul class="list-group">
+									<li class="list-group-item selected"><small><a
+												href="http://nbasilicoae2.ariel.ctu.unimi.it">ARCHITETTURA DEGLI
+												ELABORATORI II Edizione 2</a></small></li>
+									<li class="list-group-item"><small><a
+												href="http://gpighizziniasd.ariel.ctu.unimi.it">Algoritmi e strutture
+												dati</a></small></li>
+									<li class="list-group-item"><small><a
+												href="http://smontanellibd.ariel.ctu.unimi.it">Basi di dati</a></small>
+									</li>
+									<li class="list-group-item"><small><a
+												href="http://vpiuriso.ariel.ctu.unimi.it">Sistemi Operativi</a></small>
+									</li>
+									<li class="list-group-item"><small><a
+												href="http://dmalchiodisad.ariel.ctu.unimi.it">Statistica e analisi dei
+												dati</a></small></li>
+									<li class="list-group-item"><small><a
+												href="http://pceravolopwm.ariel.ctu.unimi.it">Programmazione web e
+												mobile</a></small></li>
+									<li class="list-group-item"><small><a
+												href="http://aviscontic1.ariel.ctu.unimi.it">Crittografia I</a></small>
+									</li>
+									<li class="list-group-item"><small><a
+												href="http://epaganircl.ariel.ctu.unimi.it">Reti di Calcolatori /
+												Laboratorio</a></small></li>
+									<li class="list-group-item"><small><a
+												href="http://dbruschisp.ariel.ctu.unimi.it">Sicurezza e
+												privatezza</a></small></li>
+									<li class="list-group-item"><small><a
+												href="http://grossircc.ariel.ctu.unimi.it">Reti di Calcolatori -
+												Corso</a></small></li>
+								</ul>
+								<div class="panel-footer"><small><em class="fa fa-minus-square"></em> <a
+											id="cmdToggleFavorite" href="#">rimuovi questo sito dai
+											preferiti</a></small></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-9 col-md-pull-3 col-lg-10 col-lg-pull-2">
+
+					<div id="forum" class="forumbase">
+						<div id="forumThreadListEnv">
+							<div id="forum-header">
+								<ol class="breadcrumb">
+									<li><a
+											href="ThreadList.aspx?fc=jGeVl2UhhYSpibV%2b9yeJD%2fAvWSJXr%2boHmSf3fMo8rTjWHzcOeuCtDcub171%2bfsQK&roomid=222731">Contenuti</a>
+									</li>
+									<li><strong>Teoria</strong></li>
+								</ol>
+								<h1 class="arielTitle">
+									<span><em
+											class="fa fa-fw fa-film bg-film circle-icon"></em></span><span>Teoria</span>
+								</h1>
+								<p id="forum-permissionArea" class="arielTitle"><span><em
+											class="fa fa-fw fa-lock bg-danger circle-mini-icon"></em></span><span><strong>Ambiente
+											aperto solo in lettura</strong></span></p>
+							</div>
+							<div class="arielCommandBar hidden-print btn-group btn-group-sm" role="group"
+								aria-label="...">
+								<div id="cmdBar"
+									class="arielCommandBar hidden-print btn-group btn-group-sm collapsableCmd"
+									role="group" aria-label="...">
+									<a class="btn btn-default"
+										href="ThreadList.aspx?fc=jGeVl2UhhYSpibV%2b9yeJD%2fAvWSJXr%2boHmSf3fMo8rTjWHzcOeuCtDcub171%2bfsQK&amp;roomid=222731"><em
+											class="fa fa-arrow-up fa-fw" aria-hidden="true"></em> <span
+											class="hidden-sm hidden-xs">Livello superiore</span></a><a
+										class="btn btn-default hidden-sm hidden-xs cmd quickNav" href="#"><em
+											class="fa fa-compass fa-fw" aria-hidden="true"></em> <span
+											class="hidden-sm hidden-xs">Apri quicknav</span></a><a
+										class="btn btn-default"
+										href="search.aspx?fc=jGeVl2UhhYSpibV%2b9yeJD%2fAvWSJXr%2boHmSf3fMo8rTjWHzcOeuCtDcub171%2bfsQK"><em
+											class="fa fa-search fa-fw" aria-hidden="true"></em> <span
+											class="hidden-sm hidden-xs">Ricerca</span></a><a
+										class="btn btn-default cmd notification"
+										title="Se vuoi ricevere una e-mail per la notifica di nuovi contenuti clicca sul comando. La notifica verrà abilitata anche in tutti i sottoambienti"
+										href="#"><em class="fa fa-envelope fa-fw" aria-hidden="true"></em> <span
+											class="hidden-sm hidden-xs">Notifica email non abilitata</span></a>
+									<div class="btn-group btn-group-sm" role="group">
+										<button class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false"><em class="fa fa-cog fa-fw"
+												aria-hidden="true"></em> <span
+												class="hidden-sm hidden-xs">Opzioni</span> <span
+												class="caret"></span></button>
+										<ul class="dropdown-menu dropdown-menu-right">
+											<li><a href="NotificationList.aspx?fc=jGeVl2UhhYSpibV%2b9yeJD%2fAvWSJXr%2boHmSf3fMo8rTjWHzcOeuCtDcub171%2bfsQK"
+													class="cmdnotificationlist">Gestione notifiche</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3 hidden-xs hidden-sm hidden" id="quicknav">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											Quicknav
+										</div>
+										<div class="panel-body">
+											<ul class="first list-unstyled">
+												<li>
+													<div>
+														<span><em id="tree-222731"
+																class="treehandler fa fa-minus-square fa-fw"></em><em
+																class="fa fa-folder fa-fw"></em></span><span><a
+																href="ThreadList.aspx?fc=jGeVl2UhhYSpibV%2b9yeJD%2fAvWSJXr%2boHmSf3fMo8rTjWHzcOeuCtDcub171%2bfsQK&amp;roomid=222731">Contenuti</a></span>
+													</div>
+													<ul class="list-unstyled ">
+														<li>
+															<div>
+																<span><em class="fa fa-fw"></em><em
+																		class="fa fa-folder fa-fw"></em></span><span><a
+																		href="ThreadList.aspx?fc=jGeVl2UhhYSpibV%2b9yeJD%2fAvWSJXr%2boHmSf3fMo8rTjWHzcOeuCtDcub171%2bfsQK&amp;roomid=222732">Bacheca</a></span>
+															</div>
+														</li>
+														<li class="selected">
+															<div>
+																<span><em id="tree-227362"
+																		class="treehandler fa fa-minus-square fa-fw"></em><em
+																		class="fa fa-folder fa-fw"></em></span><span><a
+																		href="ThreadList.aspx?fc=jGeVl2UhhYSpibV%2b9yeJD%2fAvWSJXr%2boHmSf3fMo8rTjWHzcOeuCtDcub171%2bfsQK&amp;roomid=227362">Teoria</a></span>
+															</div>
+															<ul class="list-unstyled ">
+																<li>
+																	<div>
+																		<span><em class="fa fa-fw"></em><em
+																				class="fa fa-folder fa-fw"></em></span><span><a
+																				href="ThreadList.aspx?fc=jGeVl2UhhYSpibV%2b9yeJD%2fAvWSJXr%2boHmSf3fMo8rTjWHzcOeuCtDcub171%2bfsQK&amp;roomid=244633">Esami</a></span>
+																	</div>
+																</li>
+															</ul>
+														</li>
+														<li>
+															<div>
+																<span><em class="fa fa-fw"></em><em
+																		class="fa fa-folder fa-fw"></em></span><span><a
+																		href="ThreadList.aspx?fc=jGeVl2UhhYSpibV%2b9yeJD%2fAvWSJXr%2boHmSf3fMo8rTjWHzcOeuCtDcub171%2bfsQK&amp;roomid=264934">Laboratorio
+																		AA 2021/2022 - Dott. Rivolta</a></span>
+															</div>
+														</li>
+														<li>
+															<div>
+																<span><em id="tree-264931"
+																		class="treehandler fa fa-plus-square fa-fw"></em><em
+																		class="fa fa-folder fa-fw"></em></span><span><a
+																		href="ThreadList.aspx?fc=jGeVl2UhhYSpibV%2b9yeJD%2fAvWSJXr%2boHmSf3fMo8rTjWHzcOeuCtDcub171%2bfsQK&amp;roomid=264931">Edizioni
+																		Precedenti</a></span>
+															</div>
+															<ul class="list-unstyled treehide">
+																<li>
+																	<div>
+																		<span><em class="fa fa-fw"></em><em
+																				class="fa fa-folder fa-fw"></em></span><span><a
+																				href="ThreadList.aspx?fc=jGeVl2UhhYSpibV%2b9yeJD%2fAvWSJXr%2boHmSf3fMo8rTjWHzcOeuCtDcub171%2bfsQK&amp;roomid=227363">Laboratorio
+																				AA 2020/2021 - Dott. Rivolta</a></span>
+																	</div>
+																</li>
+																<li>
+																	<div>
+																		<span><em id="tree-233304"
+																				class="treehandler fa fa-plus-square fa-fw"></em><em
+																				class="fa fa-folder fa-fw"></em></span><span><a
+																				href="ThreadList.aspx?fc=jGeVl2UhhYSpibV%2b9yeJD%2fAvWSJXr%2boHmSf3fMo8rTjWHzcOeuCtDcub171%2bfsQK&amp;roomid=233304">Laboratorio
+																				- turno 2 - Dott. Massimo W.
+																				Rivolta</a></span>
+																	</div>
+																	<ul class="list-unstyled treehide">
+																		<li>
+																			<div>
+																				<span><em class="fa fa-fw"></em><em
+																						class="fa fa-folder fa-fw"></em></span><span><a
+																						href="ThreadList.aspx?fc=jGeVl2UhhYSpibV%2b9yeJD%2fAvWSJXr%2boHmSf3fMo8rTjWHzcOeuCtDcub171%2bfsQK&amp;roomid=233305">Videolezioni,
+																						slide e esercizi</a></span>
+																			</div>
+																		</li>
+																	</ul>
+																</li>
+															</ul>
+														</li>
+														<li>
+															<div>
+																<span><em class="fa fa-fw"></em><em
+																		class="fa fa-folder fa-fw"></em></span><span><a
+																		href="ThreadList.aspx?fc=jGeVl2UhhYSpibV%2b9yeJD%2fAvWSJXr%2boHmSf3fMo8rTjWHzcOeuCtDcub171%2bfsQK&amp;roomid=295634">LABORATORIO
+																		a.a. 2022-2023</a></span>
+															</div>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 col-sd-12 col-xs-12" id="frmThreadListTable">
+									<table id="forum-rooms" class="table">
+										<thead>
+											<tr>
+												<th width="100%" colspan="2">Sottoambienti</th>
+											</tr>
+										</thead>
+										<tbody id="roomList" class="arielRoomList">
+											<tr id="room-244633">
+												<td class="col-icon"><em
+														class="fa fa-fw fa-folder bg-folder circle-icon"></em></td>
+												<td width="100%">
+													<h2 class="arielRoomTitle">
+														<span><em
+																class="fa fa-fw fa-null bg-default circle-mini-icon"></em></span><span><a
+																href="ThreadList.aspx?fc=jGeVl2UhhYSpibV%2b9yeJD%2fAvWSJXr%2boHmSf3fMo8rTjWHzcOeuCtDcub171%2bfsQK&amp;roomid=244633">Esami</a><small>
+																(3 elementi)
+															</small></span>
+													</h2>
+													<p><span class="postbody"></span></p>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<table id="forum-threads" class="table">
+										<thead>
+											<tr>
+												<th width="100%" colspan="2">Videogallery</th>
+											</tr>
+										</thead>
+										<tbody id="threadList" class="arielThreadList">
+											<tr class="sticky" id="msg-1505939">
+												<td colspan="2"><a name="m1505939"></a><a name="m1505939"></a>
+													<h2 class="arielTitle arielStick">
+														<span>
+															<em class="fa fa-fw fa-star bg-gray-9 circle-mini-icon"
+																title="In evidenza"></em>
+															<em class="fa fa-fw fa-paperclip bg-gray-9 circle-mini-icon"
+																title="Attachment"></em>
+														</span>
+														<span>Informazioni sull'insegnamento</span>
+													</h2>
+													<div class="arielMessageBody">
+														<span class="postbody"><a
+																href="https://nbasilicoae2.ariel.ctu.unimi.it/v5/frm3/Download.aspx?toolName=contenuti&amp;attachmentid=1603658"
+																target="_blank" class="postlink">Slides</a></span>
+														<hr />
+														<p><small><span class="postbody">--nb</span></small></p>
+													</div>
+													<div id="attachbox-1505939" class="arielAttachmentBox"
+														style="display:none;">
+														<h4>
+															<em class="fa fa-fw fa-paperclip"></em> File allegati
+														</h4>
+														<table class="table table-condensed">
+															<tbody>
+																<tr>
+																	<td><em class="fa fa-file-pdf-o fa-fw"
+																			aria-hidden="true"></em> </td>
+																	<td width="100%"><a class="cmd filename"
+																			href="../frm3/Download.aspx?toolName=contenuti&amp;attachmentid=1603658"><span
+																				class="ico download"></span>0-F1X77-23-info.pdf</a>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													<div id="infopanel-1505939"
+														class="arielInfoPanel panel panel-default collapse">
+														<div class="panel-heading">
+															Informazioni sull'oggetto<button
+																class="btn btn-primary btn-xs pull-right" href="#"
+																type="button" data-toggle="collapse"
+																data-target="#infopanel-1505939">Chiudi</button>
+														</div>
+														<div class="panel-body">
+															<div>
+																<em class="fa fa-fw fa-star bg-gray-9 circle-micro-icon"
+																	title="In evidenza"></em>In evidenza
+															</div>
+															<div>
+																<em class="fa fa-fw fa-paperclip bg-gray-9 circle-micro-icon"
+																	title="Contiene allegati"></em>Contiene allegati
+															</div>
+															<hr />
+															<p>di <strong><a href="#" class="userprofile"
+																		id="user-463908">nicola basilico</a></strong>
+															</p>
+															<p><small><em class="fa fa-fw fa-calendar"></em>
+																	<strong>27/02/2023</strong> modificato:
+																	<strong>27/02/2023</strong></small></p>
+															<p><small><strong>Storico modifiche</strong></small></p>
+															<ol>
+																<li><small><em class="fa fa-fw fa-pencil"></em>
+																		27/02/2023 | <em class="fa fa-fw fa-user"></em>
+																		<strong>nicola basilico</strong></small></li>
+															</ol>
+															<hr />
+															<div class="input-group">
+																<span class="input-group-addon"
+																	id="bbdesc-1505939">BBCode</span><input
+																	class="form-control" type="text" id="bblink-1505939"
+																	readonly
+																	value="[messaggio=#1505939]Informazioni sull&#39;insegnamento[/messaggio]"
+																	aria-describedby="bbdesc-1505939" />
+															</div>
+														</div>
+													</div>
+													<div class="arielCommandBar hidden-print noprint btn-group btn-group-xs collapsableCmd"
+														role="group" aria-label="...">
+														<a class="btn btn-default" href="#infopanel-1505939"
+															data-toggle="collapse" role="button" aria-expanded="false"
+															aria-controls="infopanel-1505939"><em
+																class="fa fa-info-circle fa-fw" aria-hidden="true"></em>
+															<span class="hidden-sm hidden-xs">Info</span></a><a
+															class="btn btn-default cmd cmdboxattach" href="#"
+															id="ref-attachbox-1505939"><em class="fa fa-paperclip fa-fw"
+																aria-hidden="true"></em> (1) <span
+																class="hidden-sm hidden-xs">Vedi file
+																allegati</span></a>
+													</div>
+												</td>
+											</tr>
+											<tr class="sticky" id="msg-1505941">
+												<td colspan="2"><a name="m1505941"></a><a name="m1505941"></a>
+													<h2 class="arielTitle arielStick">
+														<span><em class="fa fa-fw fa-star bg-gray-9 circle-mini-icon"
+																title="In evidenza"></em><em
+																class="fa fa-fw fa-paperclip bg-gray-9 circle-mini-icon"
+																title="Attachment"></em><em
+																class="fa fa-fw fa-video-camera bg-gray-9 circle-mini-icon"
+																title="Lecture Captures"></em></span><span>CPU a ciclo
+															multiplo</span>
+													</h2>
+													<div class="arielMessageBody">
+														<span class="postbody"><a
+																href="https://nbasilicoae2.ariel.ctu.unimi.it/v5/frm3/Download.aspx?toolName=contenuti&amp;attachmentid=1608578"
+																target="_blank" class="postlink">Slide</a></span>
+														<hr />
+														<p><small><span class="postbody">--nb</span></small></p>
+													</div>
+													<div id="attachbox-1505941" class="arielAttachmentBox"
+														style="display:none;">
+														<h4>
+															<em class="fa fa-fw fa-paperclip"></em> File allegati
+														</h4>
+														<table class="table table-condensed">
+															<tbody>
+																<tr>
+																	<td><em class="fa fa-file-pdf-o fa-fw"
+																			aria-hidden="true"></em> </td>
+																	<td width="100%"><a class="cmd filename"
+																			href="../frm3/Download.aspx?toolName=contenuti&amp;attachmentid=1608578"><span
+																				class="ico download"></span>1-F1X77-23-CPU-ciclo-multiplo-2.pdf</a>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													<div class="arielLecturecBox" id="lcbox-1505941">
+														<div class="lecturecVideo" style="margin-bottom:30px;">
+															<div>
+																<p>Sistema registrazione: <strong>Registrazione con
+																		PC</strong></p>
+																<p>Data Registrazione: <strong>27/02/2023</strong></p>
+																<p>Dimensione file: <strong>194 MB</strong></p>
+															</div>
+															<div class="embed-responsive embed-responsive-16by9">
+																<video width="640" height="360" class="lecturec"
+																	controls="controls" preload="none"
+																	poster="https://lecturec.ariel.ctu.unimi.it/repository/lecturec/MSTeams/nothumb.jpg">
+																	<source
+																		src="https://videolectures.unimi.it/vod/mp4:F1X77-23-2023-02-27%2011-06-16.mp4/manifest.m3u8"
+																		type="video/mp4">
+																	Il tuo browser non supporta il tag video.
+																	</source>
+																</video>
+															</div>
+															<div>
+																<p><span></span></p>
+															</div>
+														</div>
+														<hr style="border-top: 1px solid #8a4949" />
+														<div class="lecturecVideo" style="margin-bottom:30px;">
+															<div>
+																<p>Sistema registrazione: <strong>Registrazione con
+																		PC</strong></p>
+																<p>Data Registrazione: <strong>06/03/2023</strong></p>
+																<p>Dimensione file: <strong>196 MB</strong></p>
+															</div>
+															<div class="embed-responsive embed-responsive-16by9">
+																<video width="640" height="360" class="lecturec"
+																	controls="controls" preload="none"
+																	poster="https://lecturec.ariel.ctu.unimi.it/repository/lecturec/MSTeams/nothumb.jpg">
+																	<source
+																		src="https://videolectures.unimi.it/vod/mp4:F1X77-23-2023-03-06%2010-43-19.mp4/manifest.m3u8"
+																		type="video/mp4">
+																	Il tuo browser non supporta il tag video.
+																	</source>
+																</video>
+															</div>
+															<div>
+																<p><span></span></p>
+															</div>
+														</div>
+														<hr style="border-top: 1px solid #8a4949" />
+													</div>
+													<div id="infopanel-1505941"
+														class="arielInfoPanel panel panel-default collapse">
+														<div class="panel-heading">
+															Informazioni sull'oggetto<button
+																class="btn btn-primary btn-xs pull-right" href="#"
+																type="button" data-toggle="collapse"
+																data-target="#infopanel-1505941">Chiudi</button>
+														</div>
+														<div class="panel-body">
+															<div>
+																<em class="fa fa-fw fa-star bg-gray-9 circle-micro-icon"
+																	title="In evidenza"></em>In evidenza
+															</div>
+															<div>
+																<em class="fa fa-fw fa-paperclip bg-gray-9 circle-micro-icon"
+																	title="Contiene allegati"></em>Contiene allegati
+															</div>
+															<hr />
+															<p>di <strong><a href="#" class="userprofile"
+																		id="user-463908">nicola basilico</a></strong>
+															</p>
+															<p><small><em class="fa fa-fw fa-calendar"></em>
+																	<strong>27/02/2023</strong> modificato:
+																	<strong>06/03/2023</strong></small></p>
+															<p><small><strong>Storico modifiche</strong></small></p>
+															<ol>
+																<li><small><em class="fa fa-fw fa-pencil"></em>
+																		06/03/2023 | <em class="fa fa-fw fa-user"></em>
+																		<strong>nicola basilico</strong></small></li>
+																<li><small><em class="fa fa-fw fa-pencil"></em>
+																		06/03/2023 | <em class="fa fa-fw fa-user"></em>
+																		<strong>nicola basilico</strong></small></li>
+																<li><small><em class="fa fa-fw fa-pencil"></em>
+																		27/02/2023 | <em class="fa fa-fw fa-user"></em>
+																		<strong>nicola basilico</strong></small></li>
+															</ol>
+															<hr />
+															<div class="input-group">
+																<span class="input-group-addon"
+																	id="bbdesc-1505941">BBCode</span><input
+																	class="form-control" type="text" id="bblink-1505941"
+																	readonly
+																	value="[messaggio=#1505941]CPU a ciclo multiplo[/messaggio]"
+																	aria-describedby="bbdesc-1505941" />
+															</div>
+														</div>
+													</div>
+													<div class="arielCommandBar hidden-print noprint btn-group btn-group-xs collapsableCmd"
+														role="group" aria-label="...">
+														<a class="btn btn-default" href="#infopanel-1505941"
+															data-toggle="collapse" role="button" aria-expanded="false"
+															aria-controls="infopanel-1505941"><em
+																class="fa fa-info-circle fa-fw" aria-hidden="true"></em>
+															<span class="hidden-sm hidden-xs">Info</span></a><a
+															class="btn btn-default cmd cmdboxattach" href="#"
+															id="ref-attachbox-1505941"><em class="fa fa-paperclip fa-fw"
+																aria-hidden="true"></em> (1) <span
+																class="hidden-sm hidden-xs">Vedi file
+																allegati</span></a><a
+															class="btn btn-default cmd cmdboxlecturecs"
+															id="ref-lcbox-1505941"><em class="fa fa-video-camera fa-fw"
+																aria-hidden="true"></em> (2) <span
+																class="hidden-sm hidden-xs">Nascondi lecture
+																captures</span></a>
+													</div>
+												</td>
+											</tr>
+											<tr class="sticky" id="msg-1509751">
+												<td colspan="2"><a name="m1509751"></a><a name="m1509751"></a>
+													<h2 class="arielTitle arielStick">
+														<span><em class="fa fa-fw fa-star bg-gray-9 circle-mini-icon"
+																title="In evidenza"></em><em
+																class="fa fa-fw fa-paperclip bg-gray-9 circle-mini-icon"
+																title="Attachment"></em><em
+																class="fa fa-fw fa-video-camera bg-gray-9 circle-mini-icon"
+																title="Lecture Captures"></em></span><span>Pipeline</span>
+													</h2>
+													<div class="arielMessageBody">
+														<span class="postbody"><a
+																href="https://nbasilicoae2.ariel.ctu.unimi.it/v5/frm3/Download.aspx?toolName=contenuti&amp;attachmentid=1619465"
+																target="_blank" class="postlink">Slide</a></span>
+														<hr />
+														<p><small><span class="postbody">--nb</span></small></p>
+													</div>
+													<div id="attachbox-1509751" class="arielAttachmentBox"
+														style="display:none;">
+														<h4>
+															<em class="fa fa-fw fa-paperclip"></em> File allegati
+														</h4>
+														<table class="table table-condensed">
+															<tbody>
+																<tr>
+																	<td><em class="fa fa-file-pdf-o fa-fw"
+																			aria-hidden="true"></em> </td>
+																	<td width="100%"><a class="cmd filename"
+																			href="../frm3/Download.aspx?toolName=contenuti&amp;attachmentid=1619966"><span
+																				class="ico download"></span>2-F1X77-23-CPU-pipeline-5.pdf</a>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													<div class="arielLecturecBox" id="lcbox-1509751">
+														<div class="lecturecVideo" style="margin-bottom:30px;">
+															<div>
+																<p>Sistema registrazione: <strong>Registrazione con
+																		PC</strong></p>
+																<p>Data Registrazione: <strong>06/03/2023</strong></p>
+																<p>Dimensione file: <strong>95 MB</strong></p>
+															</div>
+															<div class="embed-responsive embed-responsive-16by9">
+																<video width="640" height="360" class="lecturec"
+																	controls="controls" preload="none"
+																	poster="https://lecturec.ariel.ctu.unimi.it/repository/lecturec/MSTeams/nothumb.jpg">
+																	<source
+																		src="https://videolectures.unimi.it/vod/mp4:F1X77-23-2023-03-06%2015-48-11.mp4/manifest.m3u8"
+																		type="video/mp4">
+																	Il tuo browser non supporta il tag video.
+																	</source>
+																</video>
+															</div>
+															<div>
+																<p><span></span></p>
+															</div>
+														</div>
+														<hr style="border-top: 1px solid #8a4949" />
+														<div class="lecturecVideo" style="margin-bottom:30px;">
+															<div>
+																<p>Sistema registrazione: <strong>Registrazione con
+																		PC</strong></p>
+																<p>Data Registrazione: <strong>13/03/2023</strong></p>
+																<p>Dimensione file: <strong>160 MB</strong></p>
+															</div>
+															<div class="embed-responsive embed-responsive-16by9">
+																<video width="640" height="360" class="lecturec"
+																	controls="controls" preload="none"
+																	poster="https://lecturec.ariel.ctu.unimi.it/repository/lecturec/MSTeams/nothumb.jpg">
+																	<source
+																		src="https://videolectures.unimi.it/vod/mp4:F1X77-23-2023-03-13%2010-51-21.mp4/manifest.m3u8"
+																		type="video/mp4">
+																	Il tuo browser non supporta il tag video.
+																	</source>
+																</video>
+															</div>
+															<div>
+																<p><span></span></p>
+															</div>
+														</div>
+														<hr style="border-top: 1px solid #8a4949" />
+														<div class="lecturecVideo" style="margin-bottom:30px;">
+															<div>
+																<p>Sistema registrazione: <strong>Registrazione con
+																		PC</strong></p>
+																<p>Data Registrazione: <strong>20/03/2023</strong></p>
+																<p>Dimensione file: <strong>217 MB</strong></p>
+															</div>
+															<div class="embed-responsive embed-responsive-16by9">
+																<video width="640" height="360" class="lecturec"
+																	controls="controls" preload="none"
+																	poster="https://lecturec.ariel.ctu.unimi.it/repository/lecturec/MSTeams/nothumb.jpg">
+																	<source
+																		src="https://videolectures.unimi.it/vod/mp4:F1X77-23-2023-03-15%2009-06-46.mp4/manifest.m3u8"
+																		type="video/mp4">
+																	Il tuo browser non supporta il tag video.
+																	</source>
+																</video>
+															</div>
+															<div>
+																<p><span></span></p>
+															</div>
+														</div>
+														<hr style="border-top: 1px solid #8a4949" />
+														<div class="lecturecVideo" style="margin-bottom:30px;">
+															<div>
+																<p>Sistema registrazione: <strong>Registrazione con
+																		PC</strong></p>
+																<p>Data Registrazione: <strong>20/03/2023</strong></p>
+																<p>Dimensione file: <strong>226 MB</strong></p>
+															</div>
+															<div class="embed-responsive embed-responsive-16by9">
+																<video width="640" height="360" class="lecturec"
+																	controls="controls" preload="none"
+																	poster="https://lecturec.ariel.ctu.unimi.it/repository/lecturec/MSTeams/nothumb.jpg">
+																	<source
+																		src="https://videolectures.unimi.it/vod/mp4:F1X77-23-2023-03-20%2010-55-36.mp4/manifest.m3u8"
+																		type="video/mp4">
+																	Il tuo browser non supporta il tag video.
+																	</source>
+																</video>
+															</div>
+															<div>
+																<p><span></span></p>
+															</div>
+														</div>
+														<hr style="border-top: 1px solid #8a4949" />
+													</div>
+													<div id="infopanel-1509751"
+														class="arielInfoPanel panel panel-default collapse">
+														<div class="panel-heading">
+															Informazioni sull'oggetto<button
+																class="btn btn-primary btn-xs pull-right" href="#"
+																type="button" data-toggle="collapse"
+																data-target="#infopanel-1509751">Chiudi</button>
+														</div>
+														<div class="panel-body">
+															<div>
+																<em class="fa fa-fw fa-star bg-gray-9 circle-micro-icon"
+																	title="In evidenza"></em>In evidenza
+															</div>
+															<div>
+																<em class="fa fa-fw fa-paperclip bg-gray-9 circle-micro-icon"
+																	title="Contiene allegati"></em>Contiene allegati
+															</div>
+															<hr />
+															<p>di <strong><a href="#" class="userprofile"
+																		id="user-463908">nicola basilico</a></strong>
+															</p>
+															<p><small><em class="fa fa-fw fa-calendar"></em>
+																	<strong>06/03/2023</strong> modificato: <strong>oggi
+																		alle 16:15</strong></small></p>
+															<p><small><strong>Storico modifiche</strong></small></p>
+															<ol>
+																<li><small><em class="fa fa-fw fa-pencil"></em> oggi
+																		alle 16:15 | <em class="fa fa-fw fa-user"></em>
+																		<strong>nicola basilico</strong></small></li>
+																<li><small><em class="fa fa-fw fa-pencil"></em> oggi
+																		alle 09:43 | <em class="fa fa-fw fa-user"></em>
+																		<strong>nicola basilico</strong></small></li>
+																<li><small><em class="fa fa-fw fa-pencil"></em> oggi
+																		alle 09:42 | <em class="fa fa-fw fa-user"></em>
+																		<strong>nicola basilico</strong></small></li>
+																<li><small><em class="fa fa-fw fa-pencil"></em>
+																		13/03/2023 | <em class="fa fa-fw fa-user"></em>
+																		<strong>nicola basilico</strong></small></li>
+																<li><small><em class="fa fa-fw fa-pencil"></em>
+																		13/03/2023 | <em class="fa fa-fw fa-user"></em>
+																		<strong>nicola basilico</strong></small></li>
+																<li><small><em class="fa fa-fw fa-pencil"></em>
+																		06/03/2023 | <em class="fa fa-fw fa-user"></em>
+																		<strong>nicola basilico</strong></small></li>
+															</ol>
+															<hr />
+															<div class="input-group">
+																<span class="input-group-addon"
+																	id="bbdesc-1509751">BBCode</span><input
+																	class="form-control" type="text" id="bblink-1509751"
+																	readonly
+																	value="[messaggio=#1509751]Pipeline[/messaggio]"
+																	aria-describedby="bbdesc-1509751" />
+															</div>
+														</div>
+													</div>
+													<div class="arielCommandBar hidden-print noprint btn-group btn-group-xs collapsableCmd"
+														role="group" aria-label="...">
+														<a class="btn btn-default" href="#infopanel-1509751"
+															data-toggle="collapse" role="button" aria-expanded="false"
+															aria-controls="infopanel-1509751"><em
+																class="fa fa-info-circle fa-fw" aria-hidden="true"></em>
+															<span class="hidden-sm hidden-xs">Info</span></a><a
+															class="btn btn-default cmd cmdboxattach" href="#"
+															id="ref-attachbox-1509751"><em class="fa fa-paperclip fa-fw"
+																aria-hidden="true"></em> (1) <span
+																class="hidden-sm hidden-xs">Vedi file
+																allegati</span></a><a
+															class="btn btn-default cmd cmdboxlecturecs"
+															id="ref-lcbox-1509751"><em class="fa fa-video-camera fa-fw"
+																aria-hidden="true"></em> (4) <span
+																class="hidden-sm hidden-xs">Nascondi lecture
+																captures</span></a>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div><input type="hidden" id="fc" name="fc"
+								value="jGeVl2UhhYSpibV%2b9yeJD%2fAvWSJXr%2boHmSf3fMo8rTjWHzcOeuCtDcub171%2bfsQK" />
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<footer>
+			<div id="footer" class="container-fluid text-center">
+				<a href="https://ariel.unimi.it/documenti/copyright">Copyright (c) 2007-2023</a> - <br
+					class="visible-xs" /> <a href="http://www.ctu.unimi.it">Ctu</a> - <a
+					href="http://www.unimi.it">Università degli Studi di Milano</a>
+			</div>
+		</footer>
+
+
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-D5QXZHMSTJ"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+
+			gtag('config', 'G-D5QXZHMSTJ');
+		</script>
+		<div class="aspNetHidden">
+
+			<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="4C488426" />
+		</div>
+	</form>
+</body>
+
+</html>
