@@ -46,5 +46,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Println(page)
+	lectures, err := FindAllLectures(page)
+	if err != nil {
+		panic(err)
+	}
+
+	for _, l := range lectures {
+		fmt.Println(l)
+		fmt.Println()
+	}
 }
