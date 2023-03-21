@@ -2,7 +2,6 @@ package main
 
 import (
 	"strings"
-	"time"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -12,21 +11,11 @@ const (
 	LECTURE_TITLE_QUERY = "h2.arielTitle.arielStick span"
 )
 
-const (
-	VIDEO_WRAPPER_QUERY = "div.lecturecVideo"
-	VIDEO_QUERY = "video.lecturec"
-)
-
 type Lecture struct {
 	selection 	*goquery.Selection
 	raw 		string
-	title 		string
-	videos 		[]Video
-}
-
-type Video struct {
-	uploadTime 	time.Time
-	manifestURL string
+	Title 		string
+	Videos 		[]Video
 }
 
 func FindAllLectures(page string) ([]*Lecture, error) {
@@ -47,23 +36,21 @@ func FindAllLectures(page string) ([]*Lecture, error) {
 
 func NewLecture(s *goquery.Selection) *Lecture {
 	raw, _ := s.Html()
-		
-	titleSpans := s.Find(LECTURE_TITLE_QUERY)
-	titleSplit := strings.Split(
-		strings.ReplaceAll(titleSpans.Last().Text(), "\t", " ",),
-		" ",
-	)
-	
-	title := make([]string, 0)
-	for _, s := range titleSplit {
-		if s == "" {
-			continue
-		}
-		title = append(title, strings.TrimSpace(s))
-	}
+	titleSel := s.Find(LECTURE_TITLE_QUERY).Last()
 
-	return &Lecture {
+	lecture := &Lecture {
 		raw: raw,
-		title: strings.Join(title, " "),
+		Title: ExtractTextFromHTML(titleSel),
+		selection: s,
+		Videos: make([]Video, 0),
 	}
+	lecture.findVideos()
+
+	return lecture
+}
+
+func (l *Lecture) findVideos() {
+	l.selection.Find(VIDEO_QUERY).Each(func(i int, s *goquery.Selection) {
+		l.Videos = append(l.Videos, NewVideo(s))
+	})
 }

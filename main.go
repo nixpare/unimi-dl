@@ -29,6 +29,10 @@ func main() {
 	}
 
 	for _, l := range lectures {
-		fmt.Println(l.title)
+		fmt.Println(l.Title)
+		for _, v := range l.Videos {
+			fmt.Println(v)
+		}
+		fmt.Println()
 	}
 }
