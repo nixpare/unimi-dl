@@ -2,8 +2,12 @@ package main
 
 import (
 	"fmt"
-	"io"
+	"log"
+	"net/http"
+	"net/http/cookiejar"
 	"os"
+
+	"golang.org/x/net/publicsuffix"
 )
 
 func main() {
@@ -13,23 +17,34 @@ func main() {
 		fmt.Scanf("%s\n", &b)
 	}()
 
-	pageFile, err := os.Open("page2.html")
+	logF, _ := os.OpenFile("unimi-dl.log", os.O_APPEND | os.O_CREATE | os.O_WRONLY, 0777)
+	log.SetOutput(logF)
+
+	client := new(http.Client)
+	cookieJar, err := cookiejar.New(&cookiejar.Options {
+		PublicSuffixList: publicsuffix.List,
+	})
 	if err != nil {
-		panic(err)
+		fmt.Printf("Error while initializing the HTTP client")
+		log.Printf("HTTP client error: %v\n", err)
+		os.Exit(1)
+	}
+	client.Jar = cookieJar
+
+	err = performLogin(client)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
 	}
 
-	data, err := io.ReadAll(pageFile)
+	page, err := getPage(
+		client,
+		"https://nbasilicoae2.ariel.ctu.unimi.it/v5/frm3/ThreadList.aspx?fc=qBg4sBrRnwcdhrbedslZntFd2HdJGwehSpagKzRGGL46du5ML7nAZ1F3iVRHQ0jk&roomid=227362",
+	)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		os.Exit(1)
 	}
 
-	lectures, err := FindAllLectures(string(data))
-	if err != nil {
-		panic(err)
-	}
-
-	for _, l := range lectures {
-		fmt.Println(l)
-		fmt.Println()
-	}
+	fmt.Println(page)
 }
