@@ -61,7 +61,8 @@ func (l *Lecture) findMessage() {
 
 func (l *Lecture) findVideos() {
 	l.selection.Find(VIDEO_QUERY).Each(func(i int, s *goquery.Selection) {
-		l.Videos = append(l.Videos, NewVideo(s))
+		videoName := fmt.Sprintf("%s_%d", l.Title, i+1)
+		l.Videos = append(l.Videos, NewVideo(videoName, s))
 	})
 }
 

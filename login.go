@@ -29,7 +29,7 @@ func performLogin(c *http.Client) error {
 	fmt.Println()
     if err != nil {
 		log.Printf("Password error: %v\n", err)
-		return errors.New("An error has occurred while reading the password")
+		return errors.New("an error has occurred while reading the password")
     }
     password := string(bytePassword)
 	
@@ -43,7 +43,7 @@ func performLogin(c *http.Client) error {
 	if err != nil || resp.StatusCode >= 400 {
 		body, _ := io.ReadAll(resp.Body)
 		log.Printf("Login error: %v\n\tHTTP response: %v\n\tBody: %s\n", err, resp, IndentMultilineString(string(body), 10))
-		return errors.New("An error has occurred while trying to login")
+		return errors.New("an error has occurred while trying to login")
 	}
 
 	return nil
@@ -53,13 +53,13 @@ func getPage(c *http.Client, url string) (string, error) {
 	resp, err := c.Get(url)
 	if err != nil || resp.StatusCode >= 400 {
 		log.Printf("Login error: %v\n\tHTTP response: %v\n", err, resp)
-		return "", errors.New("An error has occurred while getting Ariel home page")
+		return "", errors.New("an error has occurred while getting Ariel home page")
 	}
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		log.Printf("Login error: %v\n\tHTTP response: %v\n", err, resp)
-		return "", errors.New("An error has occurred while reading response body")
+		return "", errors.New("an error has occurred while reading response body")
 	}
 
 	return string(body), nil

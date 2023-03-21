@@ -1,7 +1,9 @@
 package main
 
 import (
+	"errors"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"net/http/cookiejar"
@@ -22,28 +24,13 @@ func main() {
 	logF, _ := os.OpenFile("unimi-dl.log", os.O_APPEND | os.O_CREATE | os.O_WRONLY, 0777)
 	log.SetOutput(logF)
 
-	client := new(http.Client)
-	cookieJar, err := cookiejar.New(&cookiejar.Options {
-		PublicSuffixList: publicsuffix.List,
-	})
-	if err != nil {
-		fmt.Printf("Error while initializing the HTTP client")
-		log.Printf("HTTP client error: %v\n", err)
-		os.Exit(1)
-	}
-	client.Jar = cookieJar
-
-	err = performLogin(client)
+	/* page, err := GetPageOnline(TEST_PAGE)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
-	}
+	} */
 
-	page, err := getPage(client, TEST_PAGE)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
+	page := LoadRawPage("page.html")
 
 	lectures, err := FindAllLectures(page)
 	if err != nil {
@@ -54,4 +41,43 @@ func main() {
 		fmt.Println(l)
 		fmt.Println()
 	}
+}
+
+func GetPageOnline(pageURL string) (string, error) {
+	client := new(http.Client)
+	cookieJar, err := cookiejar.New(&cookiejar.Options {
+		PublicSuffixList: publicsuffix.List,
+	})
+	if err != nil {
+		log.Printf("HTTP client error: %v\n", err)
+		return "", errors.New("error while initializing the HTTP client")
+	}
+	client.Jar = cookieJar
+
+	err = performLogin(client)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	page, err := getPage(client, pageURL)
+	if err != nil {
+		return "", err
+	}
+
+	return page, nil
+}
+
+func LoadRawPage(filePath string) string {
+	pageFile, err := os.Open(filePath)
+	if err != nil {
+		panic(err)
+	}
+
+	data, err := io.ReadAll(pageFile)
+	if err != nil {
+		panic(err)
+	}
+
+	return string(data)
 }
