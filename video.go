@@ -44,14 +44,14 @@ func NewVideo(name string, s *goquery.Selection) Video {
 func (v Video) Download() error {
 	failErr := fmt.Errorf("an error has occurred while downloading the video %s", v.Name)
 
-	resp, err := http.Get(v.manifestURL)
-	if err != nil {
-		log.Printf("Error getting manifest for video %s: %v\n", v.Name, err)
+	resp, err := client.Get(v.manifestURL)
+	if err != nil || resp.StatusCode >= 400 {
+		log.Printf("Error getting manifest for video %s (Code %d): %v\n", v.Name, resp.StatusCode, err)
 		return failErr
 	}
 
 	respBody, err := io.ReadAll(resp.Body)
-	if err != nil{
+	if err != nil {
 		log.Printf("Error reading manifest response for video %s: %v\n", v.Name, err)
 		return failErr
 	}
@@ -106,8 +106,6 @@ func (v Video) Download() error {
 		videoFile.Write(respBody)
 	}
 
-	fmt.Println("Done")
-
 	return nil
 }
 
@@ -118,7 +116,7 @@ func (v Video) String() string {
 	}
 
 	for _, info := range v.Infos {
-		res += fmt.Sprintf("\n  -  %s", info)
+		res += fmt.Sprintf("\n  - %s", info)
 	}
 	return res
 }

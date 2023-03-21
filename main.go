@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"io"
 	"log"
 	"net/http"
 	"net/http/cookiejar"
@@ -13,6 +12,8 @@ import (
 )
 
 const TEST_PAGE = "https://nbasilicoae2.ariel.ctu.unimi.it/v5/frm3/ThreadList.aspx?fc=qBg4sBrRnwcdhrbedslZntFd2HdJGwehSpagKzRGGL46du5ML7nAZ1F3iVRHQ0jk&roomid=227362"
+
+var client *http.Client
 
 func main() {
 	defer func() {
@@ -24,15 +25,13 @@ func main() {
 	logF, _ := os.OpenFile("unimi-dl.log", os.O_APPEND | os.O_CREATE | os.O_WRONLY, 0777)
 	log.SetOutput(logF)
 
-	/* page, err := GetPageOnline(TEST_PAGE)
+	page, err := GetPageOnline(TEST_PAGE)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
-	} */
+	}
 
-	page := LoadRawPage("page.html")
-
-	lectures, err := FindAllLectures(page)
+	lectures, err := FindAllLectures(page, TEST_PAGE)
 	if err != nil {
 		panic(err)
 	}
@@ -41,10 +40,15 @@ func main() {
 		fmt.Println(l)
 		fmt.Println()
 	}
+
+	att := lectures[0].Attachments[0]
+
+	fmt.Printf("Downloading attachment %s with url <%s>\n", att.Name, att.URL)
+	att.Download()
 }
 
 func GetPageOnline(pageURL string) (string, error) {
-	client := new(http.Client)
+	client = new(http.Client)
 	cookieJar, err := cookiejar.New(&cookiejar.Options {
 		PublicSuffixList: publicsuffix.List,
 	})
@@ -66,18 +70,4 @@ func GetPageOnline(pageURL string) (string, error) {
 	}
 
 	return page, nil
-}
-
-func LoadRawPage(filePath string) string {
-	pageFile, err := os.Open(filePath)
-	if err != nil {
-		panic(err)
-	}
-
-	data, err := io.ReadAll(pageFile)
-	if err != nil {
-		panic(err)
-	}
-
-	return string(data)
 }
