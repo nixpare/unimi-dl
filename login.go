@@ -43,7 +43,7 @@ func performLogin(c *http.Client) error {
 	if err != nil || resp.StatusCode != 200 {
 		body, _ := io.ReadAll(resp.Body)
 		log.Printf("Login error: %v\n\tHTTP response: %v\n\tBody: %s\n", err, resp, IndentMultilineString(string(body), 10))
-		return fmt.Errorf("An error has occurred while trying to login: %s", string(body))
+		return errors.New("An error has occurred while trying to login")
 	}
 
 	return nil
