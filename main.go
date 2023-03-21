@@ -10,6 +10,8 @@ import (
 	"golang.org/x/net/publicsuffix"
 )
 
+const TEST_PAGE = "https://nbasilicoae2.ariel.ctu.unimi.it/v5/frm3/ThreadList.aspx?fc=qBg4sBrRnwcdhrbedslZntFd2HdJGwehSpagKzRGGL46du5ML7nAZ1F3iVRHQ0jk&roomid=227362"
+
 func main() {
 	defer func() {
 		fmt.Println("\nPress Enter to exit")
@@ -37,10 +39,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	page, err := getPage(
-		client,
-		"https://nbasilicoae2.ariel.ctu.unimi.it/v5/frm3/ThreadList.aspx?fc=qBg4sBrRnwcdhrbedslZntFd2HdJGwehSpagKzRGGL46du5ML7nAZ1F3iVRHQ0jk&roomid=227362",
-	)
+	page, err := getPage(client, TEST_PAGE)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)

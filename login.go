@@ -40,7 +40,7 @@ func performLogin(c *http.Client) error {
 	)
 
 	resp, err := c.Post(LOGIN_URL, LOGIN_CONTENT_TYPE, strings.NewReader(payload))
-	if err != nil || resp.StatusCode != 200 {
+	if err != nil || resp.StatusCode >= 400 {
 		body, _ := io.ReadAll(resp.Body)
 		log.Printf("Login error: %v\n\tHTTP response: %v\n\tBody: %s\n", err, resp, IndentMultilineString(string(body), 10))
 		return errors.New("An error has occurred while trying to login")
