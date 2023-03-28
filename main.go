@@ -11,7 +11,7 @@ import (
 	"golang.org/x/net/publicsuffix"
 )
 
-const TEST_PAGE = "https://nbasilicoae2.ariel.ctu.unimi.it/v5/frm3/ThreadList.aspx?fc=qBg4sBrRnwcdhrbedslZntFd2HdJGwehSpagKzRGGL46du5ML7nAZ1F3iVRHQ0jk&roomid=227362"
+const TEST_PAGE = "https://nbasilicoae2.ariel.ctu.unimi.it/v5/frm3/ThreadList.aspx?fc=BxPlwgRH%2b296WJzdnwYOWDcStR%2fDkD%2fqUMKoIPKGaa2N408CbbDWmWxRudLIAoTV&roomid=227362"
 
 var client *http.Client
 
@@ -41,10 +41,9 @@ func main() {
 		fmt.Println()
 	}
 
-	att := lectures[0].Attachments[0]
-
-	fmt.Printf("Downloading attachment %s with url <%s>\n", att.Name, att.URL)
-	att.Download()
+	for _, l := range lectures {
+		l.Download()
+	}
 }
 
 func GetPageOnline(pageURL string) (string, error) {

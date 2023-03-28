@@ -29,7 +29,7 @@ func NewAttachment(pageURL string, sel *goquery.Selection) Attachment {
 	}
 }
 
-func (a Attachment) Download() error {
+func (a Attachment) Download(prefix string) error {
 	failErr := fmt.Errorf("an error has occurred while downloading attachment %s", a.Name)
 
 	resp, err := client.Get(a.URL)
@@ -44,8 +44,13 @@ func (a Attachment) Download() error {
 		return failErr
 	}
 
+	prefix = strings.ReplaceAll(prefix, "/", "-")
+	if prefix != "" && !strings.HasSuffix(prefix, "/") {
+		prefix += "/"
+	}
+
 	dirPath, _ := os.Getwd()
-	filePath := dirPath + "/" + strings.ReplaceAll(a.Name, "/", "-")
+	filePath := dirPath + "/" + prefix + strings.ReplaceAll(a.Name, "/", "-")
 	file, err := os.OpenFile(filePath, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0777)
 	if err != nil {
 		log.Printf("Error creating file for attachment %s: %v\n", a.Name, err)

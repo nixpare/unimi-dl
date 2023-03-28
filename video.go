@@ -41,7 +41,7 @@ func NewVideo(name string, s *goquery.Selection) Video {
 	return v
 }
 
-func (v Video) Download() error {
+func (v Video) Download(prefix string) error {
 	failErr := fmt.Errorf("an error has occurred while downloading the video %s", v.Name)
 
 	resp, err := client.Get(v.manifestURL)
@@ -59,7 +59,12 @@ func (v Video) Download() error {
 	videoBaseURL := v.manifestURL[:strings.LastIndex(v.manifestURL, "/")]
 	dirPath, _ := os.Getwd()
 
-	videoPath := dirPath + "/" + strings.ReplaceAll(v.Name, "/", "-") + ".ts"
+	prefix = strings.ReplaceAll(prefix, "/", "-")
+	if prefix != "" && !strings.HasSuffix(prefix, "/") {
+		prefix += "/"
+	}
+
+	videoPath := dirPath + "/" + prefix + strings.ReplaceAll(v.Name, "/", "-") + ".ts"
 	videoFile, err := os.OpenFile(videoPath, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0777)
 	if err != nil {
 		log.Printf("Error creating file for video %s: %v\n", v.Name, err)

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -75,6 +76,23 @@ func (l *Lecture) findAttachments() {
 	l.selection.Find(ATTACHMENT_QUERY).Each(func(i int, s *goquery.Selection) {
 		l.Attachments = append(l.Attachments, NewAttachment(l.pageURL, s))
 	})
+}
+
+func (l *Lecture) Download() {
+	info, err := os.Stat(l.Title)
+	if err != nil || !info.IsDir() {
+		os.Mkdir(l.Title, 0777) 		// Unhandled error
+	}
+
+	for _, a := range l.Attachments {
+		fmt.Printf("Downloading attachment %s of lecture %s\n", a.Name, l.Title)
+		a.Download(l.Title)
+	}
+	
+	for i, v := range l.Videos {
+		fmt.Printf("Downloading video #%d of lecture %s\n", i+1, l.Title)
+		v.Download(l.Title)
+	}
 }
 
 func (l Lecture) String() string {
