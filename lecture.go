@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -22,25 +21,10 @@ type Lecture struct {
 	selection 	*goquery.Selection
 	raw 		string
 	pageURL 	string
+	dlManager 	*dlManager
 }
 
-func FindAllLectures(page string, pageURL string) ([]*Lecture, error) {
-	doc, err := goquery.NewDocumentFromReader(strings.NewReader(page))
-	if err != nil {
-		return nil, err
-	}
-
-	lectures := make([]*Lecture, 0)
-
-	sel := doc.Find(LECTURE_QUERY)
-	sel.Each(func(i int, s *goquery.Selection) {
-		lectures = append(lectures, NewLecture(pageURL, s))
-	})
-
-	return lectures, nil
-}
-
-func NewLecture(pageURL string, s *goquery.Selection) *Lecture {
+func newLecture(pageURL string, s *goquery.Selection, dlManager *dlManager) *Lecture {
 	raw, _ := s.Html()
 	titleSel := s.Find(LECTURE_TITLE_QUERY).Last()
 
@@ -51,6 +35,7 @@ func NewLecture(pageURL string, s *goquery.Selection) *Lecture {
 		selection: s,
 		raw: raw,
 		pageURL: pageURL,
+		dlManager: dlManager,
 	}
 
 	lecture.findMessage()
@@ -68,13 +53,13 @@ func (l *Lecture) findMessage() {
 func (l *Lecture) findVideos() {
 	l.selection.Find(VIDEO_QUERY).Each(func(i int, s *goquery.Selection) {
 		videoName := fmt.Sprintf("%s_%d", l.Title, i+1)
-		l.Videos = append(l.Videos, NewVideo(videoName, s))
+		l.Videos = append(l.Videos, newVideo(videoName, s, l.dlManager))
 	})
 }
 
 func (l *Lecture) findAttachments() {
 	l.selection.Find(ATTACHMENT_QUERY).Each(func(i int, s *goquery.Selection) {
-		l.Attachments = append(l.Attachments, NewAttachment(l.pageURL, s))
+		l.Attachments = append(l.Attachments, newAttachment(l.pageURL, s, l.dlManager))
 	})
 }
 
