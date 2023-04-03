@@ -4,7 +4,6 @@ go 1.20
 
 require (
 	github.com/PuerkitoBio/goquery v1.8.1
-	github.com/google/uuid v1.3.0
 	golang.org/x/net v0.8.0
 	golang.org/x/term v0.6.0
 )

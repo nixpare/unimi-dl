@@ -10,24 +10,24 @@ import (
 )
 
 type UnimiDL struct {
-	Lectures  []*Lecture
-	dlManager *dlManager
-	pageURL   string
-	client 	  *http.Client
-	rawPage   string
+	Lectures []*Lecture
+	DLM      *DLManager
+	pageURL  string
+	Client 	 *http.Client
+	rawPage  string
 }
 
 func NewUnimiDL(pageURL string) (*UnimiDL, error) {
 	u := &UnimiDL{
 		Lectures:  make([]*Lecture, 0),
 		pageURL:   pageURL,
-		client: new(http.Client),
+		Client: new(http.Client),
 	}
 
-	u.dlManager = newDLManager(u.client)
+	u.DLM = NewDLManager(u.Client)
 
 	var err error
-	u.client.Jar, err = cookiejar.New(&cookiejar.Options {
+	u.Client.Jar, err = cookiejar.New(&cookiejar.Options {
 		PublicSuffixList: publicsuffix.List,
 	})
 	return u, err
@@ -44,12 +44,12 @@ func (u *UnimiDL) GetAllLectures() error {
 }
 
 func (u *UnimiDL) getPageOnline() error {
-	err := performLogin(u.client)
+	err := performLogin(u.Client)
 	if err != nil {
 		return err
 	}
 
-	u.rawPage, err = getPage(u.client, u.pageURL)
+	u.rawPage, err = getPage(u.Client, u.pageURL)
 	return err
 }
 
@@ -63,7 +63,7 @@ func (u *UnimiDL) findAllLectures(page string) ([]*Lecture, error) {
 
 	sel := doc.Find(LECTURE_QUERY)
 	sel.Each(func(i int, s *goquery.Selection) {
-		lectures = append(lectures, newLecture(u.pageURL, s, u.dlManager))
+		lectures = append(lectures, newLecture(u.pageURL, s, u.DLM))
 	})
 
 	return lectures, nil

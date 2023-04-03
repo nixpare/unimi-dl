@@ -36,4 +36,6 @@ func main() {
 	for _, l := range unimiDL.Lectures {
 		l.Download()
 	}
+
+	unimiDL.DLM.WaitForAllDownloads()
 }
