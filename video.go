@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"math"
 	"net/http"
 	"os"
 	"strings"
@@ -11,17 +12,17 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-type Video struct {
-	Name 		string
-	manifestURL string
-	Infos       []string
-}
-
 const (
 	VIDEO_QUERY = "div.lecturecVideo"
 	VIDEO_MANIFEST_QUERY = "video.lecturec > source"
 	VIDEO_INFO_QUERY = "div > p"
 )
+
+type Video struct {
+	Name 		string
+	manifestURL string
+	Infos       []string
+}
 
 func newVideo(name string, s *goquery.Selection) *Video {
 	v := &Video {
@@ -124,4 +125,98 @@ func (v Video) String() string {
 		res += fmt.Sprintf("\n  - %s", info)
 	}
 	return res
+}
+
+const (
+	CONCURRENT_DOWNLOADS = 8
+	FLUSH_AFTER = 20
+)
+
+type videoSegment struct {
+	data  	[]byte
+	ready 	bool
+	written bool
+}
+
+type videoDownload struct {
+	v        *Video
+	client   *http.Client
+	segments map[int]*videoSegment
+	file     *os.File
+	doneChan chan int
+}
+
+func (v *Video) newVideoDownload(filePath string) (*videoDownload, error) {
+	f, err := os.OpenFile(filePath, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0777)
+	if err != nil {
+		return nil, err
+	}
+
+	return &videoDownload {
+		v: v,
+		segments: make(map[int]*videoSegment),
+		file: f,
+		doneChan: make(chan int, CONCURRENT_DOWNLOADS),
+	}, nil
+}
+
+func (vd *videoDownload) downloadSegment(index int, segURL string) {
+	response, err := vd.client.Get(segURL)
+	if err != nil {
+		panic(fmt.Errorf("error downloading video <%s> on segment %d: %w", vd.v.Name, index, err))
+	}
+
+	if response.StatusCode >= 400 {
+		panic(fmt.Errorf(
+			"error downloading video <%s> on segment %d: %w", vd.v.Name, index,
+			fmt.Errorf("invalid http response %d", response.StatusCode),
+		))
+	}
+
+	vs := vd.segments[index]
+	vs.data, _ = io.ReadAll(response.Body)
+	vs.ready = true
+
+	vd.doneChan <- index
+}
+
+func (vd *videoDownload) flush() {
+	sliceStart := -1
+	for i := 0; i < len(vd.segments); i++ {
+		if vd.segments[i].ready && !vd.segments[i].written {
+			sliceStart = i
+			break
+		}
+	}
+
+	if sliceStart == -1 {
+		return
+	}
+
+	sliceEnd := sliceStart
+	for i := 0; i < len(vd.segments); i++ {
+		if !vd.segments[i].ready {
+			break
+		}
+		sliceEnd = i
+	}
+
+	flushAfter := int(math.Max(FLUSH_AFTER, CONCURRENT_DOWNLOADS))
+	if sliceEnd - sliceStart < flushAfter - 1 {
+		return
+	}
+
+	for i := sliceStart; i <= sliceEnd; i++ {
+		vs := vd.segments[i]
+
+		vd.file.Write(vs.data)
+		vs.data = nil
+		vs.written = true
+	}
+}
+
+func (vd *videoDownload) download() error {
+	fmt.Printf("Downloading video <%s> with url <%s>\n", vd.v.Name, vd.v.manifestURL)
+
+	return nil
 }
