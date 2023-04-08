@@ -29,13 +29,9 @@ func main() {
 	}
 
 	for _, l := range unimiDL.Lectures {
-		fmt.Println(l)
-		fmt.Println()
+		if len(l.Videos) != 0 {
+			fmt.Println(l.Videos[0].manifestURL)
+			break
+		}
 	}
-
-	for _, l := range unimiDL.Lectures {
-		l.Download()
-	}
-
-	unimiDL.DLM.WaitForAllDownloads()
 }
