@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"net/http"
 	"net/url"
 	"os"
 	"strings"
@@ -14,22 +15,22 @@ import (
 const ATTACHMENT_QUERY = ".arielAttachmentBox tr a.filename"
 
 type Attachment struct {
-	Name 	string
-	URL 	string
+	Name 	  string
+	URL 	  string
 }
 
-func NewAttachment(pageURL string, sel *goquery.Selection) Attachment {
+func newAttachment(pageURL string, sel *goquery.Selection) *Attachment {
 	pageURL = strings.Split(pageURL, "?")[0]
 	parsedURL, _ := url.ParseRequestURI(pageURL)
 	href, _ := url.PathUnescape(parsedURL.JoinPath(sel.AttrOr("href", "")).String())
 
-	return Attachment {
+	return &Attachment {
 		Name: sel.Text(),
 		URL: strings.ReplaceAll(href, "frm3/frm3/", "frm3/"),
 	}
 }
 
-func (a Attachment) Download(prefix string) error {
+func (a Attachment) Download(client *http.Client, prefix string) error {
 	failErr := fmt.Errorf("an error has occurred while downloading attachment %s", a.Name)
 
 	resp, err := client.Get(a.URL)

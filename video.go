@@ -23,8 +23,8 @@ const (
 	VIDEO_INFO_QUERY = "div > p"
 )
 
-func NewVideo(name string, s *goquery.Selection) Video {
-	v := Video {
+func newVideo(name string, s *goquery.Selection) *Video {
+	v := &Video {
 		Name: name,
 		manifestURL: s.Find(VIDEO_MANIFEST_QUERY).AttrOr("src", ""),
 		Infos: make([]string, 0),
@@ -41,7 +41,7 @@ func NewVideo(name string, s *goquery.Selection) Video {
 	return v
 }
 
-func (v Video) Download(prefix string) error {
+func (v Video) Download(client *http.Client, prefix string) error {
 	failErr := fmt.Errorf("an error has occurred while downloading the video %s", v.Name)
 
 	resp, err := client.Get(v.manifestURL)

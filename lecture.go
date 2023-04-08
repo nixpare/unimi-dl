@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
-	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -17,40 +17,26 @@ const (
 type Lecture struct {
 	Title 		string
 	Message 	string
-	Videos 		[]Video
-	Attachments []Attachment
+	Videos 		[]*Video
+	Attachments []*Attachment
 	selection 	*goquery.Selection
 	raw 		string
 	pageURL 	string
+	dlManager 	*DLManager
 }
 
-func FindAllLectures(page string, pageURL string) ([]*Lecture, error) {
-	doc, err := goquery.NewDocumentFromReader(strings.NewReader(page))
-	if err != nil {
-		return nil, err
-	}
-
-	lectures := make([]*Lecture, 0)
-
-	sel := doc.Find(LECTURE_QUERY)
-	sel.Each(func(i int, s *goquery.Selection) {
-		lectures = append(lectures, NewLecture(pageURL, s))
-	})
-
-	return lectures, nil
-}
-
-func NewLecture(pageURL string, s *goquery.Selection) *Lecture {
+func newLecture(pageURL string, s *goquery.Selection, dlManager *DLManager) *Lecture {
 	raw, _ := s.Html()
 	titleSel := s.Find(LECTURE_TITLE_QUERY).Last()
 
 	lecture := &Lecture {
 		Title: ExtractTextFromHTML(titleSel),
-		Videos: make([]Video, 0),
-		Attachments: make([]Attachment, 0),
+		Videos: make([]*Video, 0),
+		Attachments: make([]*Attachment, 0),
 		selection: s,
 		raw: raw,
 		pageURL: pageURL,
+		dlManager: dlManager,
 	}
 
 	lecture.findMessage()
@@ -68,13 +54,13 @@ func (l *Lecture) findMessage() {
 func (l *Lecture) findVideos() {
 	l.selection.Find(VIDEO_QUERY).Each(func(i int, s *goquery.Selection) {
 		videoName := fmt.Sprintf("%s_%d", l.Title, i+1)
-		l.Videos = append(l.Videos, NewVideo(videoName, s))
+		l.Videos = append(l.Videos, newVideo(videoName, s))
 	})
 }
 
 func (l *Lecture) findAttachments() {
 	l.selection.Find(ATTACHMENT_QUERY).Each(func(i int, s *goquery.Selection) {
-		l.Attachments = append(l.Attachments, NewAttachment(l.pageURL, s))
+		l.Attachments = append(l.Attachments, newAttachment(l.pageURL, s))
 	})
 }
 
@@ -86,12 +72,42 @@ func (l *Lecture) Download() {
 
 	for _, a := range l.Attachments {
 		fmt.Printf("Downloading attachment %s of lecture %s\n", a.Name, l.Title)
-		a.Download(l.Title)
+
+		el := l.dlManager.Download(
+			a.Name,
+			func(client *http.Client) error {
+				return a.Download(client, l.Title)
+			},
+		)
+
+		go func(a *Attachment) {
+			err := el.Wait()
+			if err == nil {
+				fmt.Printf("Attachment %s of lecture %s downloaded successfully\n", a.Name, l.Title)
+			} else {
+				fmt.Printf("An error occurred while downloading attachment %s of lecture %s: %v\n", a.Name, l.Title, err)
+			}
+		}(a)
 	}
 	
 	for i, v := range l.Videos {
 		fmt.Printf("Downloading video #%d of lecture %s\n", i+1, l.Title)
-		v.Download(l.Title)
+
+		el := l.dlManager.Download(
+			v.Name,
+			func(client *http.Client) error {
+				return v.Download(client, l.Title)
+			},
+		)
+
+		go func(v *Video) {
+			err := el.Wait()
+			if err == nil {
+				fmt.Printf("Video %s of lecture %s downloaded successfully\n", v.Name, l.Title)
+			} else {
+				fmt.Printf("An error occurred while downloading video %s of lecture %s: %v\n", v.Name, l.Title, err)
+			}
+		}(v)
 	}
 }
 
