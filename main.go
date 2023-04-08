@@ -31,6 +31,7 @@ func main() {
 	for _, l := range unimiDL.Lectures {
 		if len(l.Videos) != 0 {
 			fmt.Println(l.Videos[0].manifestURL)
+			l.Videos[0].Download(unimiDL.Client, "test")
 			break
 		}
 	}
