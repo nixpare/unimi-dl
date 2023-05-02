@@ -162,10 +162,15 @@ class Video:
 
         print(f"Video <{self.name}> downloaded")
 
-import moviepy.editor as moviepy
+import imageio.v3 as imio
 def convert_video(source: str, dest: str):    
-    clip = moviepy.VideoFileClip(source)
-    clip.write_videofile(dest)
+    with imio.imopen(dest, 'w', plugin='pyav') as d:
+        source_meta = imio.immeta(source, plugin='pyav')
+        d.init_video_stream(codec=source_meta['codec'], fps=source_meta['fps'])
+
+        for frame in imio.imiter(source, plugin='pyav'):
+            d.write_frame(frame)
+        d.close()
 
 if (__name__ == "__main__"):
     v = Video(name="test/Video_1", url="https://videolectures.unimi.it/vod/mp4:F1X77-23-2023-02-27%2011-06-16.mp4/manifest.m3u8")
