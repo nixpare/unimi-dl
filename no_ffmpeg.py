@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+import imageio.v3 as imageio
 import io
 import os
 import queue
@@ -43,6 +44,10 @@ class Video:
     """The url of the video manifest of type .m3u8"""
 
     segments: dict[int, VideoSegment]
+
+    ts_file_path: str
+
+    mp4_file_path: str
     
     file: io.BufferedWriter
 
@@ -63,13 +68,14 @@ class Video:
         self.segments = dict()
         self.download_queue = queue.Queue()
 
-        video_path = os.getcwd() + "/" + self.name + ".ts"
-        self.file = open(video_path, 'wb')
+        video_path = os.getcwd() + "/" + self.name
+        self.ts_file_path = video_path + ".ts"
+        self.mp4_file_path = video_path + ".mp4"
+        # self.file = open(self.ts_file_path, 'wb')
 
     def download_segment(self, index: int, seg_url: str):
         
         response = requests.get(seg_url, verify=False)
-        print(response.status_code)
 
         self.segments[index].data = response.content
         self.segments[index].ready = True
@@ -157,8 +163,20 @@ class Video:
 
         print(f"Video <{self.name}> downloaded")
 
+def convert_video(source: str, dest: str):    
+    with imageio.imopen(dest, 'w', plugin='pyav') as d:
+        source_meta = imageio.immeta(source, plugin='pyav', exclude_applied=False)
+        d.init_video_stream(codec=source_meta['codec'], fps=source_meta['fps'])
+
+        for frame in imageio.imiter(source, plugin='pyav'):
+            d.write_frame(frame)
+        d.close()
+
 if (__name__ == "__main__"):
     v = Video(name="test/Video_1", url="https://videolectures.unimi.it/vod/mp4:F1X77-23-2023-02-27%2011-06-16.mp4/manifest.m3u8")
-    v.download_video()
+    # v.download_video()
+
+    convert_video(v.ts_file_path, v.mp4_file_path)
 
     print("Exit")
+
